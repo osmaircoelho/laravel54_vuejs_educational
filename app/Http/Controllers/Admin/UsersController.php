@@ -2,6 +2,7 @@
 
 namespace SON\Http\Controllers\Admin;
 
+use SON\Forms\UserForm;
 use SON\Models\User;
 use Illuminate\Http\Request;
 use SON\Http\Controllers\Controller;
@@ -25,7 +26,13 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+       $form = \FormBuilder::create(UserForm::class, [
+        	'url' => route('admin.users.store'),
+            'method' => 'POST'
+        ]);
+
+       //return view('admin.users.create',['form' => $form] );
+       return view('admin.users.create',['form'=>$form] );
     }
 
     /**
