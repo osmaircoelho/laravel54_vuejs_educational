@@ -21,7 +21,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::paginate();
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -36,8 +37,7 @@ class UsersController extends Controller
             'method' => 'POST'
         ]);
 
-       //return view('admin.users.create',['form' => $form] );
-       return view('admin.users.create',['form'=>$form] );
+       return view('admin.users.create',compact('form') );
     }
 
     /**
@@ -46,18 +46,25 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+	public function store(Request $request)
+	{
 		/** @var Form $form */
-    	$form = \FormBuilder::create(UserForm::class);
+		$form = \FormBuilder::create(UserForm::class);
 
-    	if(!$form->isValid()){
-    		return redirect()
-			    ->back()
-			    ->withErrors($form->getErrors())
-			    ->withInput();
-	    }
-    }
+		if(!$form->isValid()){
+			return redirect()
+				->back()
+				->withErrors($form->getErrors())
+				->withInput();
+		}
+
+		$data = $form->getFieldValues();
+		$password = str_random(6);
+		$data['password'] = $password;
+		User::create($data);
+
+		return redirect()->route('admin.users.index');
+	}
 
     /**
      * Display the specified resource.
