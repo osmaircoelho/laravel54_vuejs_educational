@@ -230,6 +230,10 @@ return [
         'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
         'Button' => Bootstrapper\Facades\Button::class,
         'Table' => Bootstrapper\Facades\Table::class,
+	    'Icon' => \Bootstrapper\Facades\Icon::class,
+        'Navbar' => Bootstrapper\Facades\Navbar::class,
+        'Navigation' => Bootstrapper\Facades\Navigation::class,
+        'Alert' => Bootstrapper\Facades\Alert::class,
 
     ],
 

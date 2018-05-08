@@ -14,9 +14,10 @@
              ->callback('Actions', function($field, $model){
              $linkEdit = route('admin.users.edit', ['user' => $model->id]);
              $linkShow = route('admin.users.show', ['user' => $model->id]);
-             return Button::success('Edit')->asLinkTo($linkEdit)->extraSmall() . ' ' .
-                    Button::primary('View')->asLinkTo($linkShow)->extraSmall() .' '.
-                    Button::danger('Delete')->extraSmall();
+            // $linkDelete = route('admin.users.destroy', ['user'=> $model->id]);
+             return Button::success(Icon::create('pencil'). ' Edit')->asLinkTo($linkEdit)->extraSmall() . ' ' .
+                    Button::primary(Icon::create('eye-open'). ' View')->asLinkTo($linkShow)->extraSmall();
+                   // Button::danger(Icon::create('').' Delete')->asLinkTo($linkDelete)->extraSmall();
              })
             !!}
             {!! $users->links() !!}

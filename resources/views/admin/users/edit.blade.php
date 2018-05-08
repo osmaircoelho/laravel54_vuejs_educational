@@ -3,13 +3,13 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h3>New User</h3>
+            <h3>User edit</h3>
             {!!
-            form($form->add('insert','submit',[
+            form($form->add('edit', 'submit', [
                 'attr' => ['class' => 'btn btn-primary btn-block'],
-                'label' => Icon::create('floppy-disk') . ' Insert',
+                'label' => Icon::create('floppy-disk'). ' Edit',
             ]))
-            !!}
+             !!}
         </div>
     </div>
 @endsection
