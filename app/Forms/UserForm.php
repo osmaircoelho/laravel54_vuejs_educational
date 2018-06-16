@@ -3,6 +3,7 @@
 namespace SON\Forms;
 
 use Kris\LaravelFormBuilder\Form;
+use SON\Models\User;
 
 class UserForm extends Form
 {
@@ -18,10 +19,22 @@ class UserForm extends Form
 				'label' => 'E-mail',
 				'rules' => "required|max:255|unique:users,email,{$id}"
 			])
+			->add('type', 'select',[
+				'label' => 'Type of user',
+				'choices' => $this->roles(),
+				'rules' => 'required|in:'.implode(',', array_keys( $this->roles() ) )
+			])
 			->add('send_mail', 'checkbox',[
 				'label' => 'Send welcome email',
 				'value' => true,
 				'checked' => false
 			]);
+	}
+	protected function roles(){
+		return [
+			User::ROLE_ADMIN => 'Administrator',
+			User::ROLE_TEACHER => 'Teacher',
+			User::ROLE_STUDENT => 'Student'
+		];
 	}
 }
