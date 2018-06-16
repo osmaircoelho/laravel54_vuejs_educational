@@ -12,6 +12,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style type="text/css">
+        @media print{
+            .hidden-print {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -54,8 +61,10 @@
         @endif
 
         @if(Session::has('message'))
-            <div class="container">
-                {!! Alert::success(Session::get('message'))->close() !!}
+            <div class="container hidden-print">
+                <div class="row">
+                    {!! Alert::success(Session::get('message'))->close() !!}
+                </div>
             </div>
         @endif
         @yield('content')

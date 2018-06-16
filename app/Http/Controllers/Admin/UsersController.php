@@ -59,10 +59,25 @@ class UsersController extends Controller
 		}
 
 		$data = $form->getFieldValues();
-		User::createFully($data);
+		$result = User::createFully($data);
+
 		$request->session()->flash('message', 'User created successfully');
-		return redirect()->route('admin.users.index');
+		$request->session()->flash('user_created', [
+			'id' => $result['user']->id,
+			'password' => $result['password']
+		]);
+		//return redirect()->route('admin.users.index');
+		return redirect()->route('admin.users.show_details');
 	}
+
+	public function showDetails()
+	{
+		$userData = session('user_created');
+		$user = User::findOrFail($userData['id']);
+		$user->password = $userData['password'];
+		return view('admin.users.show_details', compact('user'));
+	}
+
 
     /**
      * Display the specified resource.
@@ -118,12 +133,14 @@ class UsersController extends Controller
 	    return redirect()->route('admin.users.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \SON\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  \SON\Models\User $user
+	 *
+	 * @return \Illuminate\Http\Response
+	 * @throws \Exception
+	 */
     public function destroy(User $user)
     {
         $user->delete();

@@ -10,12 +10,15 @@
             @endphp
 
             {!! Button::primary(Icon::pencil(). ' Edit')->asLinkTo($linkEdit) !!}
-            {!!
-            Button::danger(Icon::remove(). ' Delete')->asLinkTo($linkDelete)
-                ->addAttributes([
-                    'onclick' => "event.preventDefault();document.getElementById(\"form-delete\").submit();"
-                ])
-            !!}
+
+                @if($user->email != 'admin@user.com')
+                {!!
+                    Button::danger(Icon::remove(). ' Delete')->asLinkTo($linkDelete)
+                    ->addAttributes([
+                        'onclick' => "event.preventDefault();document.getElementById(\"form-delete\").submit();"
+                    ]);
+                !!}
+                @endif
 
             @php
                 $formDelete = FormBuilder::plain([

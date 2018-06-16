@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'SONEdu'),
 
     /*
     |--------------------------------------------------------------------------
@@ -234,6 +234,7 @@ return [
         'Navbar' => Bootstrapper\Facades\Navbar::class,
         'Navigation' => Bootstrapper\Facades\Navigation::class,
         'Alert' => Bootstrapper\Facades\Alert::class,
+	    'Badge' => \Bootstrapper\Facades\Badge::class,
 
     ],
 
