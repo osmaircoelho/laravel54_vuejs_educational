@@ -4,6 +4,7 @@ namespace SON\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use SON\models\Admin;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -21,10 +22,11 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
-        $this->registerPolicies();
+	public function boot() {
+		$this->registerPolicies();
 
-        //
-    }
+		\Gate::define( 'admin', function ( $user ) {
+			return $user->userable instanceof Admin;
+		} );
+	}
 }

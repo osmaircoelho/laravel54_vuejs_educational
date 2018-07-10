@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use SON\Models\User;
+use SON\Models\UserProfile;
 
 class UsersTableSeeder extends Seeder
 {
@@ -17,12 +18,16 @@ class UsersTableSeeder extends Seeder
 		    'enrolment' => 100001,
 	        'password' => bcrypt('trinity')
         ])->each(function(User $user){
+	        $profile = factory(UserProfile::class)->make();
+	        $user->profile()->create($profile->toArray());
 	        User::assignRole($user, User::ROLE_ADMIN);
-        	$user->save();
+	        $user->save();
         });
 
         factory(User::class, 10)->create()->each(function (User $user){
         	if(!$user->userable) {
+		        $profile = factory(UserProfile::class)->make();
+		        $user->profile()->create($profile->toArray());
 				User::assignRole($user, User::ROLE_TEACHER);
 				User::assignEnrolment(new User(), User::ROLE_TEACHER );
 				$user->save();
@@ -31,6 +36,8 @@ class UsersTableSeeder extends Seeder
 
         factory(User::class, 10)->create()->each(function (User $user){
         	if(!$user->userable){
+		        $profile = factory(UserProfile::class)->make();
+		        $user->profile()->create($profile->toArray());
         		User::assignRole($user, User::ROLE_STUDENT);
         		User::assignEnrolment(new User(), User::ROLE_STUDENT);
         		$user->save();

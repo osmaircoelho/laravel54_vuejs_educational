@@ -5,12 +5,13 @@
         <div class="row">
             @component('admin.users.tabs-component',['user' => $form->getModel()])
                 <div class="col-md-12">
-                    <h3>User edit</h3>
+                    <h3>Edit profile</h3>
+					<?php $icon = Icon::create('pencil');?>
                     {!!
-                    form($form->add('edit','submit', [
-                        'attr' => ['class' => 'btn btn-primary btn-block'],
-                        'label' => Icon::create('floppy-disk').'&nbsp;&nbsp;Edit'
-                    ]))
+                        form($form->add('salve', 'submit', [
+                            'attr' => ['class' => 'btn btn-primary btn-block'],
+                            'label' => $icon
+                        ]))
                     !!}
                 </div>
             @endcomponent
