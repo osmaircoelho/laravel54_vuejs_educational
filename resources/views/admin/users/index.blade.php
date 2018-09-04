@@ -5,6 +5,7 @@
         <div class="row">
             <h3>User listing</h3>
             {!! Button::primary('New User')->asLinkTo(route('admin.users.create')) !!}
+
         </div>
 
         <div class="row">
