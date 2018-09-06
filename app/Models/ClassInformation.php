@@ -21,6 +21,11 @@ class ClassInformation extends Model implements TableInterface
 		'date_end'
 	];
 
+	public function students()
+	{
+		return $this->belongsToMany(Student::class);
+	}
+
 	/**
 	 * A list of headers to be used when a table is displayed
 	 *

@@ -115,7 +115,9 @@ class ClassInformationsController extends Controller
 	 * Remove the specified resource from storage.
 	 *
 	 * @param  \SON\Models\ClassInformation $class_information
+	 *
 	 * @return \Illuminate\Http\Response
+	 * @throws \Exception
 	 */
 	public function destroy(ClassInformation $class_information)
 	{
