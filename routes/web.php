@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::prefix('admin')->group(function (){
+
 	Auth::routes();
 
 	Route::group(['prefix' => 'users', 'as' => 'admin.users.'], function (){
@@ -31,6 +32,7 @@ Route::prefix('admin')->group(function (){
 		Route::name('dashboard')->get('/dashboard', function () {
 			return "Im in dashboard";
 		});
+
 		Route::group(['prefix' => 'users', 'as' => 'users.'], function (){
 			Route::name('show_details')->get('show_details', 'UsersController@showDetails');
 			Route::group(['prefix' => '/{user}/profile'], function () {
@@ -44,6 +46,7 @@ Route::prefix('admin')->group(function (){
 		Route::group(['prefix' => 'class_informations/{class_information}', 'as' => 'class_informations.'],
 			function (){
 				Route::resource('students', 'ClassStudentsController', ['only' => ['index', 'store', 'destroy']]);
+				Route::resource('teachings', 'ClassTeachingsController',['only' => ['index','store','destroy']]);
 			});
 		Route::resource('class_informations', 'ClassInformationsController');
 
@@ -54,6 +57,8 @@ Route::prefix('admin')->group(function (){
 			'prefix' => 'api'
 		], function (){
 			Route::name('students.index')->get('students','StudentsController@index');
+			Route::name('subjects.index')->get('subjects', 'SubjectsController@index');
+			Route::name('teachers.index')->get('teachers', 'TeachersController@index');
 		});
 	});
 });
