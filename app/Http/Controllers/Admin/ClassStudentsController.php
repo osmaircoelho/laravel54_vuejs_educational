@@ -8,7 +8,7 @@ use SON\Models\ClassInformation;
 use SON\Models\Student;
 
 class ClassStudentsController extends Controller
-{ 
+{
 	/**
 	 * Display a listing of the resource.
 	 *

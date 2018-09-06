@@ -22,7 +22,8 @@
     </div>
 </template>
 
-<script>
+<!--<script>
+    import 'select2';
     import store from '../../store/store';
 
     export default {
@@ -34,10 +35,19 @@
         },
         mounted(){
             store.dispatch('classStudent/query', this.classInformation);
+            $("select[name=students]").select2({
+                ajax: {
+                    url: ``,
+                    dataType: 'json',
+                    delay: 250,
+                    processResults(data){
+
+                    }
+                }
+            });
         }
     }
-</script>
-<!--
+</script>-->
 
 <script>
     import ADMIN_CONFIG from '../../services/adminConfig';
@@ -79,8 +89,8 @@
                     classInformationId: self.classInformation
                 }).then(() => {
                     new PNotify({
-                        title: 'Aviso',
-                        text: 'Aluno adicionado com sucesso',
+                        title: 'Warning',
+                        text: 'Student added successfully',
                         styling: 'brighttheme',
                         type: 'success'
                     });
@@ -89,7 +99,7 @@
         },
         methods: {
             destroy(student){
-                if(confirm('Deseja remover este aluno')){
+                if(confirm('Do you want to remove this student?')){
                     store.dispatch('classStudent/destroy', {
                         studentId: student.id,
                         classInformationId: this.classInformation
@@ -98,4 +108,4 @@
             }
         }
     }
-</script>-->
+</script>
