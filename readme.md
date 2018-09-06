@@ -7,6 +7,10 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## Educational Management System with Laravel and Vue.js
+
+An educational management application in which teachers will manage the achievement of their students. Each teacher will be able to create system-based or virtual proofs for students to make and receive their grades. Using the incredible features of Vue.js, we will put together an entire application with javascript only, allowing full interactivity with the exams and providing a great experience for students and teachers. With Laravel, we will create the entire API Restful and the administrative part, where administrators can manage teachers and students.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
