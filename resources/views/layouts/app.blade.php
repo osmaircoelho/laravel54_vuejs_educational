@@ -13,76 +13,69 @@
     <!-- Styles -->
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 
-    <style type="text/css">
-        @media print{
-            .hidden-print {
-                display: none;
-            }
-        }
-    </style>
 </head>
 <body>
-    <div id="app">
-         @php
-            $navbar = Navbar::withBrand(config('app.name'), route('admin.dashboard'))->inverse();
-         if(Auth::check()){
+<div id="app">
+    @php
+        $navbar = Navbar::withBrand(config('app.name'), route('admin.dashboard'))->inverse();
+     if(Auth::check()){
 
-             if(Gate::allows('admin')){
-                    $arrayLinks = [
-                        ['link' => route('admin.users.index'), 'title' => 'Users'],
-                        ['link' => route('admin.subjects.index'), 'title' => 'Discipline'],
-                        ['link' => route('admin.class_informations.index'), 'title' => 'Class']
-                    ];
-                 $navbar->withContent(Navigation::links($arrayLinks));
-             }
+         if(Gate::allows('admin')){
+                $arrayLinks = [
+                    ['link' => route('admin.users.index'), 'title' => 'Users'],
+                    ['link' => route('admin.subjects.index'), 'title' => 'Discipline'],
+                    ['link' => route('admin.class_informations.index'), 'title' => 'Class']
+                ];
+             $navbar->withContent(Navigation::links($arrayLinks));
+         }
 
-                $arrayLinksRight =[
+            $arrayLinksRight =[
+                [
+                    Auth::user()->name,
                     [
-                        Auth::user()->name,
                         [
-                            [
-                                'link' => route('admin.users.settings.edit'),
-                                'title' => 'Settings'
-                            ],
+                            'link' => route('admin.users.settings.edit'),
+                            'title' => 'Settings'
+                        ],
 
-                            [
-                                'link' => route('logout'),
-                                'title' => 'Logout',
-                                'linkAttributes' => [
-                                    'onclick' => "event.preventDefault();document.getElementById(\"form-logout\").submit();"
-                                ]
+                        [
+                            'link' => route('logout'),
+                            'title' => 'Logout',
+                            'linkAttributes' => [
+                                'onclick' => "event.preventDefault();document.getElementById(\"form-logout\").submit();"
                             ]
                         ]
                     ]
-                ];
+                ]
+            ];
 
-                $navbar->withContent(Navigation::links($arrayLinksRight)->right());
+            $navbar->withContent(Navigation::links($arrayLinksRight)->right());
 
-                $formLogout = FormBuilder::plain([
-                    'id' => 'form-logout',
-                    'url' => route('logout'),
-                    'method' => 'POST',
-                    'style' => 'display:none'
-                ]);
-            }
-         @endphp
-        {!! $navbar !!}
+            $formLogout = FormBuilder::plain([
+                'id' => 'form-logout',
+                'url' => route('logout'),
+                'method' => 'POST',
+                'style' => 'display:none'
+            ]);
+        }
+    @endphp
+    {!! $navbar !!}
 
-        @if(Auth::check())
-            {!! form($formLogout) !!}
-        @endif
+    @if(Auth::check())
+        {!! form($formLogout) !!}
+    @endif
 
-        @if(Session::has('message'))
-            <div class="container hidden-print">
-                <div class="row">
-                    {!! Alert::success(Session::get('message'))->close() !!}
-                </div>
+    @if(Session::has('message'))
+        <div class="container hidden-print">
+            <div class="row">
+                {!! Alert::success(Session::get('message'))->close() !!}
             </div>
-        @endif
-        @yield('content')
-    </div>
+        </div>
+    @endif
+    @yield('content')
+</div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/admin.js') }}"></script>
+<!-- Scripts -->
+<script src="{{ asset('js/admin.js') }}"></script>
 </body>
 </html>

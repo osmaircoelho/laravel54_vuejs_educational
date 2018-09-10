@@ -1,9 +1,10 @@
 <?php
+
 namespace SON\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use SON\Http\Controllers\Controller;
-//use SON\Http\Requests\ClassStudentRequest;
+use SON\Http\Requests\ClassStudentRequest;
 use SON\Models\ClassInformation;
 use SON\Models\Student;
 
@@ -11,6 +12,9 @@ class ClassStudentsController extends Controller
 {
 	/**
 	 * Display a listing of the resource.
+	 *
+	 * @param Request $request
+	 * @param ClassInformation $class_information
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
@@ -29,10 +33,12 @@ class ClassStudentsController extends Controller
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	/*public function store(ClassStudentRequest $request,ClassInformation $class_information)
+	public function store(ClassStudentRequest $request, ClassInformation $class_information)
 	{
-		//
-	}*/
+		$student = Student::find($request->get('student_id'));
+		$class_information->students()->save($student);
+		return $student;
+	}
 
 	/**
 	 * Remove the specified resource from storage.

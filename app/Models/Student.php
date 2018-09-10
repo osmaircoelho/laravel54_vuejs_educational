@@ -1,6 +1,6 @@
 <?php
 
-namespace SON\models;
+namespace SON\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +11,7 @@ class Student extends Model {
 	}
 
 	public function toArray() {
+
 		$data = parent::toArray();
 		$this->user->makeHidden( 'userable_type', 'userable_id' );
 		$data['user'] = $this->user;

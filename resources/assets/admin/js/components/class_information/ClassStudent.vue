@@ -83,6 +83,7 @@
                 },
                 minimumInputLength: 1,
             });*/
+
             $("select[name=students]").select2({
                 ajax: {
                     url: `${ADMIN_CONFIG.API_URL}/students`,
@@ -103,6 +104,21 @@
                 },
                 minimumInputLength: 1,
             });
+
+            let self = this;
+            $("select[name=students]").on('select2:select', event => {
+                store.dispatch('classStudent/store', {
+                    studentId: event.params.data.id,
+                    classInformationId: self.classInformation
+                }).then(() => {
+                    new PNotify({
+                        title: 'Warning',
+                        text: 'Student added successfully',
+                        styling: 'brighttheme',
+                        type: 'success'
+                    });
+                });
+            })
         },
         methods: {
             destroy(student){

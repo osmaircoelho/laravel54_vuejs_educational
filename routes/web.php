@@ -15,7 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('admin')->group(function (){
+Route::prefix('admin')->group(
+
+function (){
 
 	Auth::routes();
 
@@ -50,16 +52,17 @@ Route::prefix('admin')->group(function (){
 			});
 		Route::resource('class_informations', 'ClassInformationsController');
 
-		Route::group([
-			'namespace' => 'Api\\',
-			'as' => 'admin.api.',
-			'middleware' => ['auth', 'can:admin'],
-			'prefix' => 'api'
-		], function (){
-			Route::name('students.index')->get('students','StudentsController@index');
-			Route::name('subjects.index')->get('subjects', 'SubjectsController@index');
-			Route::name('teachers.index')->get('teachers', 'TeachersController@index');
-		});
+
+	}); // namespace Admin\\
+	Route::group([
+		'namespace' => 'Api\\',
+		'as' => 'admin.api.',
+		'middleware' => ['auth', 'can:admin'],
+		'prefix' => 'api',
+	], function (){
+		Route::name('students.index')->get('students','StudentsController@index');
+		Route::name('subjects.index')->get('subjects', 'SubjectsController@index');
+		Route::name('teachers.index')->get('teachers', 'TeachersController@index');
 	});
 });
 
