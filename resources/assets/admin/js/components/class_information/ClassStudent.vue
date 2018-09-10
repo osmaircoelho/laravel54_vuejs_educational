@@ -14,7 +14,11 @@
             </thead>
             <tbody>
             <tr v-for="student in students">
-                <td>Excluir</td>
+                <td>
+                    <button type="button" class="btn btn-default" @click="destroy(student)">
+                        <span class="glyphicon glyphicon-trash"></span> Delete
+                    </button>
+                </td>
                 <td>{{student.user.name}}</td>
             </tr>
             </tbody>
