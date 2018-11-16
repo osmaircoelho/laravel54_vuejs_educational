@@ -8,6 +8,7 @@ use SON\Http\Requests\ClassStudentRequest;
 use SON\Http\Requests\ClassTeachingRequest;
 use SON\Models\ClassInformation;
 use SON\Models\ClassTeaching;
+use SON\Models\Student;
 
 class ClassTeachingsController extends Controller {
 	/**
@@ -29,12 +30,15 @@ class ClassTeachingsController extends Controller {
 	/**
 	 * Store a newly created resource in storage.
 	 *
-	 * @param  \Illuminate\Http\Request $request
+	 * @param ClassTeachingRequest $request
 	 *
-	 * @return \Illuminate\Http\Response
+	 * @param ClassInformation $class_information
+	 *
+	 * @return \Illuminate\Database\Eloquent\Model
 	 */
 	public function store( ClassTeachingRequest $request, ClassInformation $class_information ) {
-		$teaching  = $class_information->teaches()->create([
+
+		$teaching  = $class_information->teachings()->create([
 			'subject_id' => $request->get('subject_id'),
 			'teacher_id' => $request->get('teacher_id'),
 		]);

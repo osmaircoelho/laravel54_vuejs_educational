@@ -22,18 +22,18 @@ class ClassTeachingRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
-	    $class_information = $this->route('class_information');
-	    return [
-		    'teacher_id' => 'required|exist:teachers,id',
-		    'subject_id' => [
-		    	'required',
-			    'exists:subjects,id',
-			    Rule::unique('class_teaching', 'subject_id')
-				    ->where('class_information_id', $class_information->id)
-			        ->where('teacher_id',$this->get('teacher_id') )
-		    ]
-	    ];
-    }
+	public function rules()
+	{
+		$class_information = $this->route('class_information');
+		return [
+			'teacher_id' => 'required|exists:teachers,id',
+			'subject_id' => [
+				'required',
+				'exists:subjects,id',
+				Rule::unique('class_teachings','subject_id')
+				    ->where('class_information_id',$class_information->id)
+				    ->where('teacher_id',$this->get('teacher_id'))
+			]
+		];
+	}
 }

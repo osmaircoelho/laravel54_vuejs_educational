@@ -46,7 +46,6 @@
 
     export default {
         props: ['classInformation'],
-        name: "class-teaching",
         computed: {
             teachings(){
                 return store.state.classTeaching.teachings;
@@ -93,6 +92,32 @@
                         processResults: item.processResults
                     },
                     minimumInputLength: 1,
+                });
+            }
+        },
+        methods:{
+            destroy(teaching){
+                if(confirm('Are you sure do you want to remove this student?')){
+                    store.dispatch('classTeaching/destroy', {
+                        teachingId: teaching.id,
+                        classInformationId: this.classInformation
+                    })
+                }
+            },
+            store(){
+                store.dispatch('classTeaching/store',{
+
+                    teacherId: $("select[name=teachers]").val(),
+                    subjectId: $("select[name=subjects]").val(),
+
+                    classInformationId: this.classInformation
+                }).then(response => {
+                   new PNotify({
+                      title: 'Warning',
+                      text: 'Teaching added successfully',
+                      styling: 'brighttheme',
+                      type: 'success'
+                   });
                 });
             }
         }
