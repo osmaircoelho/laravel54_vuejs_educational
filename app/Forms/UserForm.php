@@ -7,6 +7,7 @@ use SON\Models\User;
 
 class UserForm extends Form
 {
+
 	public function buildForm()
 	{
 		$id = $this->getData('id');
