@@ -1,6 +1,6 @@
 <?php
 
-namespace SON\models;
+namespace SON\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

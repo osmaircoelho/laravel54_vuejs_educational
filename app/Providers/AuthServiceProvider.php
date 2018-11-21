@@ -8,13 +8,14 @@ use SON\models\Admin;
 
 class AuthServiceProvider extends ServiceProvider
 {
+
     /**
      * The policy mappings for the application.
      *
      * @var array
      */
     protected $policies = [
-        'SON\Model' => 'SON\Policies\ModelPolicy',
+        'SON\Model' => 'SON\Policies\ModelPolicy'
     ];
 
     /**
