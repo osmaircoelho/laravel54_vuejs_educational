@@ -44,6 +44,12 @@ class AuthController extends Controller
 			return ['token' => $token];
 		}
 
+		return response()->json([
+			'error' => \Lang::get('auth.failed')
+		], 400);
+	}
 
+	public function logout(){
+		\Auth::guard('api')->logout();
 	}
 }
