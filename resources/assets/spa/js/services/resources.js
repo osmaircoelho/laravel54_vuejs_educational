@@ -2,8 +2,8 @@ import 'vue-resource';
 import SPA_CONFIG from './spaConfig';
 import Vue from 'vue';
 import JwtToken from './jwt-token';
-//import store from '../store/store';
-//import router from '../router';
+import store from '../store/store';
+import router from '../router';
 
 Vue.http.options.root = SPA_CONFIG.API_URL;
 

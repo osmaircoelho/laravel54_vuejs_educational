@@ -8,6 +8,13 @@ const router = new VueRouter({
     routes, store
 });
 
+router.beforeEach((to, from, next) => {
+    if(to.meta.auth && !store.state.auth.check){
+        return router.push({name: 'login'})
+    }
+    next();
+});
+
 new Vue({
 
     router,

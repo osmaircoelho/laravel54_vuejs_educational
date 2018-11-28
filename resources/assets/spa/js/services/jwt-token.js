@@ -26,7 +26,7 @@ export default {
     },
     revokeToken(){
         let afterRevokeToken = () => {
-            this.token = null;
+           // this.token = null;
         };
         return Jwt.logout()
             .then(afterRevokeToken)

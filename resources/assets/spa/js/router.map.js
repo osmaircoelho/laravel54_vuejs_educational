@@ -12,5 +12,5 @@ export default [
         path: '/login',
         component: require('./components/Login.vue')
     },
-    {path: '*', rediret: '/login'}
+    {path: '*', redirect: '/login'}
 ];
