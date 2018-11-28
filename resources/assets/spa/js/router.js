@@ -8,7 +8,6 @@ const router = new VueRouter({
     routes, store
 });
 
-
 new Vue({
 
     router,

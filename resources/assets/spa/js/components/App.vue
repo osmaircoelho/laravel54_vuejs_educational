@@ -2,7 +2,6 @@
     <div>
         <teacher-menu></teacher-menu>
         <router-view></router-view>
-       <!-- <logout></logout>-->
     </div>
 </template>
 

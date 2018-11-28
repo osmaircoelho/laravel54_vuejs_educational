@@ -2,13 +2,13 @@ import 'vue-resource';
 import SPA_CONFIG from './spaConfig';
 import Vue from 'vue';
 import JwtToken from './jwt-token';
-import store from '../store/store';
-import router from '../router';
+//import store from '../store/store';
+//import router from '../router';
 
 Vue.http.options.root = SPA_CONFIG.API_URL;
 
-Vue.http.interceptors.push((request,next) => {
-    if(JwtToken.token) {
+Vue.http.interceptors.push((request, next) => {
+    if(JwtToken.token){
         request.headers.set('Authorization', JwtToken.getAuthorizationHeader());
     }
     next();
@@ -58,6 +58,7 @@ const Student = {
     })
 };
 
+/*
 export {
     Teacher, Student
-};
+};*/
