@@ -2,6 +2,7 @@
 
 namespace SON\Http\Controllers\Api\Teacher;
 
+use Auth;
 use Illuminate\Http\Request;
 use SON\Http\Controllers\Controller;
 use SON\Models\ClassInformation;
@@ -13,15 +14,13 @@ class ClassInformationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-	    $results = ClassInformation::whereHas('teachings', function ($query){
-		    $id = \Auth::user()->userable->id;
-		    $query->where('teacher_id', $id);
-	    })->get();
+	public function index() {
+		$results = ClassInformation
+			::ByTeacher(\Auth::user()->userable->id)
+		    ->get();
 
-	    return $results;
-    }
+		return $results;
+	}
 
 
     /**
@@ -32,10 +31,9 @@ class ClassInformationsController extends Controller
      */
     public function show($id)
     {
-	    $result = ClassInformation::whereHas('teachings', function ($query){
-		    $id = \Auth::user()->userable->id;
-		    $query->where('teacher_id', $id);
-	    })->findOrFail($id);
+	    $result = ClassInformation
+		    ::ByTeacher(\Auth::user()->userable->id)
+	    ->findOrFail($id);
 
 	    return $result;
     }

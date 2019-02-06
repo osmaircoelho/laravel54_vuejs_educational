@@ -9,6 +9,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use SON\Notifications\UserCreated;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
+/**
+ * @property mixed userable
+ */
 class User extends Authenticatable implements TableInterface, JWTSubject {
 
 	use Notifiable;
@@ -38,6 +41,9 @@ class User extends Authenticatable implements TableInterface, JWTSubject {
 		'password',
 		'remember_token',
 	];
+
+	public static function assingRole( $user, $ROLE_ADMIN ) {
+	}
 
 	public function profile(){
 		return $this->hasOne(UserProfile::class)->withDefault();
