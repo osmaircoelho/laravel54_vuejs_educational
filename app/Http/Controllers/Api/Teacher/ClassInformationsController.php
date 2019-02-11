@@ -31,6 +31,7 @@ class ClassInformationsController extends Controller
      */
     public function show($id)
     {
+
 	    $result = ClassInformation
 		    ::ByTeacher(\Auth::user()->userable->id)
 	    ->findOrFail($id);
