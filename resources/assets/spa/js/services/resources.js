@@ -58,7 +58,7 @@ const Student = {
     })
 };
 
-/*
+
 export {
     Teacher, Student
-};*/
+};

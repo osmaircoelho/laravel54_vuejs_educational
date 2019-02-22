@@ -20,7 +20,7 @@
         $navbar = Navbar::withBrand(config('app.name'), route('admin.dashboard'))->inverse();
      if(Auth::check()){
 
-         if(Gate::allows('admin')){
+         if(\Gate::allows('admin')){
                 $arrayLinks = [
                     ['link' => route('admin.users.index'), 'title' => 'Users'],
                     ['link' => route('admin.subjects.index'), 'title' => 'Discipline'],
@@ -67,9 +67,9 @@
 
     @if(Session::has('message'))
         <div class="container hidden-print">
-            <div class="row">
+            {{--<div class="row">--}}
                 {!! Alert::success(Session::get('message'))->close() !!}
-            </div>
+           {{-- </div>--}}
         </div>
     @endif
     @yield('content')

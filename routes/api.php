@@ -30,6 +30,7 @@ Route::group( [
 			'middleware' => 'can:teacher'
 		], function () {
 			Route::resource( 'class_informations', 'ClassInformationsController', [ 'only' => [ 'index', 'show' ] ] );
+			Route::resource('class_teachings', 'ClassTeachingsController', ['only' => ['index', 'show']]);
 		} );
 	} );
 

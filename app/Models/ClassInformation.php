@@ -33,8 +33,10 @@ class ClassInformation extends Model implements TableInterface
 
 	public function scopeByTeacher($query, $teacherId)
 	{
+
 		return $query->whereHas('teachings', function ($query) use($teacherId){
 			$query->where('teacher_id', $teacherId);
+
 		});
 	}
 	public function scopeByStudent($query, $studentId)

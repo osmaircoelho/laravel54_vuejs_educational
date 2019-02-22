@@ -11,7 +11,7 @@
                 menus: [
                     {name: 'Minhas turmas', routerName: 'class_informations.list'},
                 ],
-                brandRouteName: 'class_informations.list'
+                brandRouteName: 'class_teachings.list'
             }
         }
     };

@@ -5,6 +5,7 @@ namespace SON\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use SON\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use SON\Models\Admin;
 
 class AuthController extends Controller
 {
@@ -37,7 +38,6 @@ class AuthController extends Controller
 	public function accessToken(Request $request)
 	{
 		$this->validateLogin($request);
-
 		$credentials = $this->credentials($request);
 
 		if($token = \Auth::guard('api')->attempt($credentials)){
@@ -51,5 +51,6 @@ class AuthController extends Controller
 
 	public function logout(){
 		\Auth::guard('api')->logout();
+		return response()->json([], 204);
 	}
 }
