@@ -17,8 +17,15 @@ class ClassTest extends Model
     {
     	return $this->belongsTo(ClassTeaching::class);
     }
+
     public function questions()
     {
     	return $this->hasMany(Question::class);
+    }
+
+    public function scopebyTeacher($query, $teacherId){
+        return $query->whereHas('classTeaching', function ($query) use ($teacherId) {
+            $query->where('teacher_id', $teacherId);
+        });
     }
 }

@@ -9,6 +9,6 @@ class QuestionChoice extends Model
     protected $fillable = [
         'choice',
         'true',
-        'question_id'
+        'class_question_id'
     ];
 }

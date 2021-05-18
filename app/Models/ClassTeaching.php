@@ -3,6 +3,8 @@
 namespace SON\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ClassTeaching extends Model
 {
@@ -14,24 +16,28 @@ class ClassTeaching extends Model
 		'teacher_id'
 	];
 
-	public function classTests(){
+	public function classTests(): HasMany
+    {
 		return $this->hasMany(ClassTest::class);
 	}
 
-	public function subject(){
+	public function subject(): BelongsTo
+    {
 		return $this->belongsTo(Subject::class);
 	}
 
-	public function classInformation(){
+	public function classInformation(): BelongsTo
+    {
 		return $this->belongsTo(ClassInformation::class);
 	}
 
-	public function teacher(){
+	public function teacher(): BelongsTo
+    {
 		return $this->belongsTo(Teacher::class);
 	}
 
-	public function toArray()
-	{
+	public function toArray(): array
+    {
 		$data = parent::toArray();
 		$data['teacher'] = $this->teacher;
 		$data['subject'] = $this->subject;
