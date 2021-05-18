@@ -4,6 +4,7 @@ namespace SON\Http\Controllers\Api\Teacher;
 
 use Illuminate\Http\Request;
 use SON\Http\Controllers\Controller;
+use SON\Http\Requests\ClassTestRequest;
 use SON\Models\ClassTeaching;
 use SON\Models\ClassTest;
 
@@ -18,25 +19,13 @@ class ClassTestsController extends Controller
         return $results;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(ClassTestRequest $request, ClassTeaching $classTeaching)
     {
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(ClassTestRequest $request, ClassTeaching $classTeaching)
     {
 
     }
@@ -49,12 +38,6 @@ class ClassTestsController extends Controller
         return $result;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
 
