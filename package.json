@@ -17,7 +17,7 @@
     "cross-env": "^5.0.1",
     "jquery": "^3.1.1",
     "laravel-mix": "^2.1.14",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.21",
     "pnotify": "^3.2.1",
     "select2": "^4.0.6-rc.1",
     "vue": "^2.5.17",
