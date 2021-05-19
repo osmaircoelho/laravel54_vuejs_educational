@@ -25,9 +25,9 @@ class ClassTestsController extends Controller
         return ClassTest::createFully($request->all()+['class_teaching_id' => $classTeaching->id]);
     }
 
-    public function update(ClassTestRequest $request, ClassTeaching $classTeaching)
+    public function update(ClassTestRequest $request,ClassTeaching $classTeaching,ClassTest $classTest)
     {
-
+        return $classTest->updateFully($request->all());
     }
 
     public function show(ClassTeaching $classTeaching, $id)

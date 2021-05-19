@@ -2,6 +2,7 @@
 
 namespace SON\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class ClassTest extends Model
@@ -29,6 +30,14 @@ class ClassTest extends Model
         });
     }
 
+    protected function deleteQuestions()
+    {
+        foreach ($this->questions()->get() as $question) {
+            $question->choices()->delete();
+            $question->delete();
+        }
+    }
+
     protected static function createQuestion ($question){
         /** @var Question $newQuestion */
         $newQuestion = Question::create($question);
@@ -42,5 +51,27 @@ class ClassTest extends Model
             self::createQuestion($question+['class_test_id' => $classTest->id]);
         }
         return $classTest;
+    }
+
+
+    public function updateFully(array $data)
+    {
+        $this->update($data);
+        $this->deleteQuestions();
+        foreach ($data['questions'] as $question) {
+            self::createQuestion($question + ['class_test_id' => $this->id]);
+        }
+        return $this;
+    }
+
+    public function toArray()
+    {
+        $data = parent::toArray();
+        $data['date_start'] = (new Carbon($this->date_start))->format('Y-m-d\TH:i');
+        $data['date_end'] = (new Carbon($this->date_end))->format('Y-m-d\TH:i');
+        $data['total_questions'] = $this->questions()->getQuery()->count();
+        $data['total_points'] = $this->questions()->getQuery()->sum('point');
+        //$data['questions'] = $this->questions;
+        return $data;
     }
 }
