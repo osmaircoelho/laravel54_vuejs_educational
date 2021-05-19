@@ -18,7 +18,7 @@ class ClassTestRequest extends FormRequest
         $classTeaching = $this->route('class_teaching');
         $result = ClassTeaching::where('teacher_id',\Auth::user()->userable->id)
         ->find($classTeaching->id);
-        return $result != NULL;
+        return $result != null;
     }
 
     /**
