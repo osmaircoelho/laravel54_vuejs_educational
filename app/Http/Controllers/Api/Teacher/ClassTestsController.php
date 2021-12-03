@@ -19,7 +19,6 @@ class ClassTestsController extends Controller
         return $results;
     }
 
-
     public function store(ClassTestRequest $request, ClassTeaching $classTeaching)
     {
         return ClassTest::createFully($request->all()+['class_teaching_id' => $classTeaching->id]);
@@ -38,8 +37,12 @@ class ClassTestsController extends Controller
         return $result;
     }
 
-    public function destroy($id)
+    public function destroy(ClassTeaching $classTeaching, $classTestId)
     {
-
+        $result = ClassTest
+            ::byTeacher(\Auth::user()->userable->id)
+            ->findOrFail($classTestId);
+        $result->deleteFully();
+        return response()->json([], 204);
     }
 }

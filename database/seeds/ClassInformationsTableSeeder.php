@@ -17,7 +17,9 @@ class ClassInformationsTableSeeder extends Seeder
 		factory( \SON\Models\ClassInformation::class, 50 )
 			->create()
 			->each( function ( \SON\Models\ClassInformation $model ) use ( $students, $teachers, $subjects ) {
-				/** @var Illuminate\Support\Collection $studentsCol */
+
+                /* pega 10 estudantes aletoriamentes*/
+                /** @var Illuminate\Support\Collection $studentsCol */
 				$studentsCol = $students->random( 10 );
 
 				$model->students()->attach( $studentsCol->pluck( 'id' ) );
