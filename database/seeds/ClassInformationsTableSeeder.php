@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use SON\Models\ClassInformation;
+use SON\Models\Student;
+use SON\Models\Subject;
+use SON\Models\Teacher;
 
 class ClassInformationsTableSeeder extends Seeder
 {
@@ -10,13 +14,13 @@ class ClassInformationsTableSeeder extends Seeder
 	 * @return void
 	 */
 	public function run() {
-		$students = \SON\Models\Student::all();
-		$teachers = \SON\Models\Teacher::all();
-		$subjects = \SON\Models\Subject::all();
+		$students = Student::all();
+		$teachers = Teacher::all();
+		$subjects = Subject::all();
 
-		factory( \SON\Models\ClassInformation::class, 50 )
+		factory( ClassInformation::class, 50 )
 			->create()
-			->each( function ( \SON\Models\ClassInformation $model ) use ( $students, $teachers, $subjects ) {
+			->each( function ( ClassInformation $model ) use ( $students, $teachers, $subjects ) {
 
                 /* pega 10 estudantes aletoriamentes*/
                 /** @var Illuminate\Support\Collection $studentsCol */

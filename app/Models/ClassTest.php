@@ -24,7 +24,7 @@ class ClassTest extends Model
     	return $this->hasMany(Question::class);
     }
 
-    public function scopebyTeacher($query, $teacherId){
+    public function scopeByTeacher($query, $teacherId){
         return $query->whereHas('classTeaching', function ($query) use ($teacherId) {
             $query->where('teacher_id', $teacherId);
         });

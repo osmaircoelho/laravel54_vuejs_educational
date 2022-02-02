@@ -1,21 +1,19 @@
 import {Jwt} from './resources';
 import LocalStorage from './localstorage';
-import {Buffer} from 'buffer/';
 
 const payloadToObject = (token) => {
     let payload = token.split('.')[1];
-    //return JSON.parse(atob(payload));
-    return JSON.parse(Buffer.from(payload,'base64').toString());
+    return JSON.parse(atob(payload));
 };
 
-const TOKEN = 'token'
+const TOKEN = 'token';
 
 export default {
-    get token(){
+    get token() {
         return LocalStorage.get(TOKEN);
     },
-    set token(value){
-        value ? LocalStorage.set(TOKEN,value):LocalStorage.remove(TOKEN);
+    set token(value) {
+        value ? LocalStorage.set(TOKEN, value) : LocalStorage.remove(TOKEN);
     },
     get payload(){
         return this.token!=null?payloadToObject(this.token):null;
@@ -28,11 +26,11 @@ export default {
     },
     revokeToken(){
         let afterRevokeToken = () => {
-            this.token = null;
+           // this.token = null;
         };
         return Jwt.logout()
             .then(afterRevokeToken)
-            .catch(afterRevokeToken);
+            .catch(afterRevokeToken)
     },
     getAuthorizationHeader(){
         return `Bearer ${LocalStorage.get(TOKEN)}`;

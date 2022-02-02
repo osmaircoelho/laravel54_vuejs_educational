@@ -30,7 +30,7 @@ Route::group( [
 			'middleware' => 'can:teacher'
 		], function () {
 		    Route::group(['prefix' => 'class_teachings/{class_teaching}', 'as' => 'class_teachings.'], function (){
-		        Route::resource('class_tests', 'ClassTestsController', ['except' => ['create','edit']]);
+		        Route::resource('class_tests', 'ClassTestsController', ['except' => ['create','edit']]); //exceto
             });
 			Route::resource( 'class_informations', 'ClassInformationsController', [ 'only' => [ 'index', 'show' ] ] );
 			Route::resource('class_teachings', 'ClassTeachingsController', ['only' => ['index', 'show']]);
